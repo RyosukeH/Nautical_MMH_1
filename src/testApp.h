@@ -8,7 +8,7 @@ class testApp : public ofBaseApp{
 		void setup();
 		void update();
 		void draw();
-		
+
 		void keyPressed(int key);
 		void keyReleased(int key);
 		void mouseMoved(int x, int y);
@@ -18,14 +18,16 @@ class testApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
-    
+
     ofCamera cam;
     ofMesh aachan;
     ofMesh nocchi;
     ofMesh kashiyuka;
-    
+
     ofEasyCam myCam;
-    
+    ofLight mySun;
+    ofFloatColor ambtCol, dffsCol, spclCol;
+
     bool isAachan, isNOCCHi, isKashiyuka;
-    
+
 };
