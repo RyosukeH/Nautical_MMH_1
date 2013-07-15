@@ -19,7 +19,8 @@ class testApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 
-    ofCamera cam;
+    //ofCamera cam;
+
     ofMesh aachan;
     ofMesh nocchi;
     ofMesh kashiyuka;
@@ -30,4 +31,8 @@ class testApp : public ofBaseApp{
 
     bool isAachan, isNOCCHi, isKashiyuka;
 
+    
+    //
+    ofPoint point;
+    ofVec3f camVec, origin;
 };
