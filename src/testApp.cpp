@@ -11,8 +11,9 @@
 //--------------------------------------------------------------
 void testApp::setup(){
     ofBackground(0);
+    ofSetFrameRate(60);
+    ofSetFullscreen(true);
     ofSetFrameRate(30);
-
     cout<<"START LOADING PERFUME MEMBERS"<<endl;
 
     ofxObjLoader::load("model1.obj", aachan, true);
@@ -27,6 +28,19 @@ void testApp::setup(){
 
 
     //camera position
+    //myCam.setDistance(1000);
+    
+    point.x = 0;
+    point.y = 0;
+    point.z = -100;
+    
+    origin.set(0, 0, 0);
+    
+    myCam.setTarget(origin);
+    
+
+    //lighting
+    /*
     myCam.setDistance(1000);
 
     //lighting
@@ -39,6 +53,7 @@ void testApp::setup(){
     mySun.setAmbientColor(ambtCol);
     mySun.setDiffuseColor(dffsCol);
     mySun.setSpecularColor(spclCol);
+     */
 
     //mySun.setAmbientColor(
 
@@ -59,22 +74,39 @@ void testApp::setup(){
 
 //--------------------------------------------------------------
 void testApp::update(){
-
+    /*
+    camVec.x = sin(2*PI);
+    camVec.y = cos(2*PI);
+    camVec.z = 100;
+     */
+    
+    camVec.set(500*sin(2*PI/10*ofGetElapsedTimef()), 100, 500*cos(2*PI/10*ofGetElapsedTimef()));
+    origin.set(-sin(2*PI/10*ofGetElapsedTimef()) * sin(2*PI*ofGetElapsedTimef()/10), cos(2*PI*ofGetElapsedTimef()/10), -cos(2*PI/10*ofGetElapsedTimef()) * sin(2*PI*ofGetElapsedTimef()/10));
+    myCam.setTarget(origin);
 }
 
 //--------------------------------------------------------------
 void testApp::draw(){
 
     myCam.begin();
+    myCam.setPosition(point + camVec);
+    
+    ofPushMatrix();
+    
+    ofTranslate(point);
 
-
+    //オブジェクト自体の回転
+    //ofRotateY(ofGetElapsedTimef() * 10);
+    
     //Aachan
     if (isAachan) {
         //ofTranslate(ofGetWidth()/3, 0);
 
         ofSetColor(200+ofRandom(55), 200, 200);
-
         aachan.drawWireframe();
+        ofSetColor(200+ofRandom(55), 200, 200);
+        aachan.drawFaces();
+        //aachan.drawWireframe();
         //aachan.drawVertices();
     }
 
@@ -93,12 +125,17 @@ void testApp::draw(){
 
     //Kashiyuka
     if (isKashiyuka) {
+        
+        ofSetColor(70, 70, 70);
+        kashiyuka.drawWireframe();
         ofSetColor(200, 200+ofRandom(55), 200);
-
+        kashiyuka.drawFaces();
         //kashiyuka.drawWireframe();
-        kashiyuka.drawVertices();
+        //kashiyuka.drawVertices();
     }
+    
 
+    ofPopMatrix();
 
     myCam.end();
 }
