@@ -25,6 +25,10 @@ void testApp::setup(){
     cout << " num texcords " << aachan.getNumTexCoords() << endl;
     cout << " num normals " << aachan.getNumNormals() << endl;
     cout << " num indices " << aachan.getNumIndices() << endl;
+    
+    //test
+    mseX = 0;
+    mseY = 0;
 
 
     //camera position
@@ -80,7 +84,7 @@ void testApp::update(){
     camVec.z = 100;
      */
     
-    camVec.set(500*sin(2*PI/10*ofGetElapsedTimef()), 100, 500*cos(2*PI/10*ofGetElapsedTimef()));
+    camVec.set(500*sin(2*PI/10*ofGetElapsedTimef()) + mseX, 100 + mseY, 500*cos(2*PI/10*ofGetElapsedTimef()));
     origin.set(-sin(2*PI/10*ofGetElapsedTimef()) * sin(2*PI*ofGetElapsedTimef()/10), cos(2*PI*ofGetElapsedTimef()/10), -cos(2*PI/10*ofGetElapsedTimef()) * sin(2*PI*ofGetElapsedTimef()/10));
     myCam.setTarget(origin);
 }
@@ -115,7 +119,8 @@ void testApp::draw(){
         //ofTranslate(ofGetWidth()/2, -ofGetHeight()/2);
 
 
-        ofSetColor(30, 30, 30);
+        //ofSetColor(30, 30, 30);
+        ofSetColor(200, 200, 200+ofRandom(55));
         nocchi.drawWireframe();
         ofSetColor(200, 200, 200+ofRandom(55));
         nocchi.drawFaces();
@@ -126,7 +131,8 @@ void testApp::draw(){
     //Kashiyuka
     if (isKashiyuka) {
         
-        ofSetColor(70, 70, 70);
+        //ofSetColor(70, 70, 70);
+        ofSetColor(200, 200+ofRandom(55), 200);
         kashiyuka.drawWireframe();
         ofSetColor(200, 200+ofRandom(55), 200);
         kashiyuka.drawFaces();
@@ -180,6 +186,8 @@ void testApp::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void testApp::mousePressed(int x, int y, int button){
+    mseX = x;
+    mseY = y;
 
 }
 
