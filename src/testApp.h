@@ -35,4 +35,8 @@ class testApp : public ofBaseApp{
     //
     ofPoint point;
     ofVec3f camVec, origin;
+    
+    
+    //camera position
+    int mseX, mseY;
 };
