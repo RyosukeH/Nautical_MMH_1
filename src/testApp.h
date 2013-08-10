@@ -19,15 +19,36 @@ class testApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 
-    ofCamera cam;
+		float sq(float value);
+		ofVec3f normalize(ofVec3f P);
+		ofVec3f getScreenX(ofVec3f P);
+		ofVec3f getScreenY(ofVec3f P);
+
+    //ofCamera cam;
     ofMesh aachan;
     ofMesh nocchi;
     ofMesh kashiyuka;
 
-    ofEasyCam myCam;
+    ofCamera myCam;
+    ofVec2f lensoffset;
     ofLight mySun;
     ofFloatColor ambtCol, dffsCol, spclCol;
 
     bool isAachan, isNOCCHi, isKashiyuka;
+    bool isFullScreen;
+    bool isTargetView;
+    bool isMove;
 
+    //MEMBER FOR REPRESENTING TIME
+    float t;
+
+    //
+    ofPoint point;
+    ofVec3f camVec, origin, upVector, target, targetTemp;
+    ofVec3f scrX, scrY;
+    ofVec3f camPos;
+
+    //camera position
+    int mseX, mseY;
+    ofVec2f mouseP, mouseD, mouseR;
 };
