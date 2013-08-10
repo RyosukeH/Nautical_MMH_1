@@ -1,0 +1,24 @@
+
+//--20130810-nauticalmile
+開発時のメモ用にこのファイルを追加．
+
+1．フルスクリーン切り替え
+キー　f を押下時にスクリーンをfull or window で変更できるようにする．
+fullscreen 管理用のbool値　isFullScreen を testApp.h へ追加．
+keyPressed 内の key == 'f' の処理を変更．
+
+2．時間表記変更
+いちいち ofGetElapsedTimef() と打つのが面倒なので，
+update()　内に float t　を用意し，ofGetElapsedTimef()　の値を放り込む．
+
+3.ofCamera実装
+ofEasyCam にはブラックボックス的な要素が多いので，ofCamera に変更．
+lookAt関数を用いて，見るターゲットを定める．
+tの押下でisTargetViewを切り替え，
+空間の原点をターゲットとする場合と，
+マウスに寄る視点移動を切り替える．
+マウスに寄る視点移動の演算のため，
+getScreenX, getScreenYでスクリーンを張るベクトルを求める．
+現在の視点方向にマウスの移動量を掛けたスクリーンを張るベクトルを足し合わせ，
+視点を移動させる．
+
